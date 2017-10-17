@@ -8,9 +8,8 @@ var twitterKeys = {
 }
 
 var spotifyKeys = {
-client_id:  '2569694336-1W53tgqA40aSReecs0B4DTe3s6BAvHv6SWgQyFf',
-client_secret:  'vkSas6oa5bn6IPfzRMpLnABM7VqMOlPjFwYMp5uhEewgm'
-
+id:  'ca0f10ec1a0546dd9f92ca95f1907334',
+secret:  '2543813dfd524e08bf73c9379482a2cb'
 };
 
 module.exports = {
