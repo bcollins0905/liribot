@@ -8,13 +8,13 @@ switch (action) {
     getMyTweets();
     break;
   case "movie-this":
-    deposit();
+    getMovieInfo();
     break;
   case "spotify-this-song":
     getSongInfo();
     break;
   case "do-what-it-says":
-    lotto();
+    getRandom();
     break;
   }
 
@@ -50,37 +50,50 @@ function getSongInfo(){
 
 
   spotify
-    .search({ type: 'track', query: search })
-    .then(function(response){
-      console.log(typeof response)
-      //response = JSON.stringify(response, null, 2);
+      .search({ type: 'track', query: search })
+      .then(function(response){
+        console.log(typeof response)
       for(var i in response.tracks.items) {  
-        console.log(response.tracks.items[i].artists[0].name)
-        console.log(response.tracks.items[i].album.name)
-        console.log(response.tracks.items[i].name)
-        console.log(response.tracks.items[i].album.name)
+        console.log("Artist: " + response.tracks.items[i].artists[0].name)
+        console.log("Song Title: " + response.tracks.items[i].name)
+        console.log("Album: " + response.tracks.items[i].album.name)
+        console.log("Song Preview: " + response.tracks.items[i].preview_url)
       }
-
-  // .catch(function(err) {
-  //  console.log(err);
-  // });
-//}
-
-// function(response){
-//         for (var i = 0; i < response.tracks.items[i].length; i++) {
-//           console.log(JSON.stringify(response.tracks.items[i].artists[i].name, null, 2))
-//           console.log(JSON.stringify(response.tracks.items[i].album.name, null, 2))
-//           console.log(JSON.stringify(response.tracks.items[i].name, null, 2))
-//           console.log(JSON.stringify(response.tracks.items[i].album.name, null, 2))
-//       }     
-// gets artist ------>response.tracks.items[0].artists[0].name,
-///gets song title ----> response.tracks.items[0].name,
-// A preview link of the song from Spotify  response.tracks.items[0].external_urls
-// gets album title ----->  response.tracks.items[0].album.name,                                    "	
-
-
-})
+  })
 }
 
+
+function getMovieInfo(){
+var request = require("request");
+request("http://www.omdbapi.com/?t="+ search +"&y=&plot=short&apikey=40e9cece", function(error, response, body) {
+  if (!error && response.statusCode === 200) {
+    console.log("Title: " + JSON.parse(body).Title);
+    console.log("Year Released: " + JSON.parse(body).Year);
+    console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
+    console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value);
+    console.log("Movie Produced in: " + JSON.parse(body).Country)
+    console.log("Language: " + JSON.parse(body).Lauguage)
+    console.log("Plot: " + JSON.parse(body).Plot)
+    console.log("Actors: " + JSON.parse(body).Actors)
+    }
+  });
+}
+
+// function getRandom(){
+
+// var fs = require("fs");
+
+// fs.readFile("random.txt", "utf8", function(error, data) {
+
+//   if (error) {
+//     return console.log(error);
+//   }
+// var txt = data.split(',');
+
+//  var txt = data.toString().split(',');
+
+//       [txt[0].trim()](txt[1].trim());
+//     });
+//   };
 
 

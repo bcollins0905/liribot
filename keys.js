@@ -12,9 +12,15 @@ id:  'ca0f10ec1a0546dd9f92ca95f1907334',
 secret:  '2543813dfd524e08bf73c9379482a2cb'
 };
 
+var omdbKeys = {
+apikey: "40e9cece"
+
+}
+
 module.exports = {
     twitterKeys,
-    spotifyKeys
+    spotifyKeys,
+    omdbKeys
 };
 
  
