@@ -27,19 +27,63 @@
 //   }
 // });
 
-var fs = require("fs");
-// This block of code will read from the "movies.txt" file.
-// It's important to include the "utf8" parameter or the code will provide stream data (garbage)
-// The code will store the contents of the reading inside the variable "data"
-fs.readFile("random.txt", "utf8", function(error, data) {
-  // If the code experiences any errors it will log the error to the console.
-  if (error) {
-    return console.log(error);
-  }
-  // We will then print the contents of data
-  console.log(data);
-  // Then split it by commas (to make it more readable)
-  var dataArr = data.split(",");
-  // We will then re-display the content as an array for later use.
-  console.log(dataArr);
-});
+// var fs = require("fs");
+// // This block of code will read from the "movies.txt" file.
+// // It's important to include the "utf8" parameter or the code will provide stream data (garbage)
+// // The code will store the contents of the reading inside the variable "data"
+// fs.readFile("random.txt", "utf8", function(error, data) {
+//   // If the code experiences any errors it will log the error to the console.
+//   if (error) {
+//     return console.log(error);
+//   }
+//   // We will then print the contents of data
+//   console.log(data);
+//   // Then split it by commas (to make it more readable)
+//   var dataArr = data.split(",");
+//   // We will then re-display the content as an array for later use.
+//   console.log(dataArr);
+// });
+
+// var getrandom = "";
+
+// function getRandom(){
+
+// var fs = require("fs");
+
+// fs.readFile("random.txt", "utf8", function(error, data) {
+ 
+//   if (error) {
+//     return console.log(error);
+//   }
+//   getrandom = data.split(",")
+
+//   search = getrandom[1]
+//   console.log(search)
+
+//   //getSongInfo()
+
+//   });
+// }
+
+
+// function getRandom(){
+// var fs = require("fs");
+// var getrandom = "";
+
+// fs.readFile("random.txt", "utf8", function(error, data) {
+
+//   if (error) {
+//     return console.log(error);
+//   }
+//   var txt = data.split(",")
+//   search = getrandom[1]
+
+//   action = getrandom[0]
+//   console.log(search)
+  
+//   console.log(action)
+// });
+
+// }
+
+//getRandom()

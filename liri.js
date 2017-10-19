@@ -1,7 +1,9 @@
+
 var action = process.argv[2];
 var search = process.argv[3];
 
 var keys = require("./keys.js");
+
 
 switch (action) {
   case "my-tweets":
@@ -17,6 +19,7 @@ switch (action) {
     getRandom();
     break;
   }
+
 
 
 function getMyTweets(){
@@ -48,7 +51,6 @@ function getSongInfo(){
 		secret: keys.spotifyKeys.secret		
 	})
 
-
   spotify
       .search({ type: 'track', query: search })
       .then(function(response){
@@ -72,28 +74,31 @@ request("http://www.omdbapi.com/?t="+ search +"&y=&plot=short&apikey=40e9cece", 
     console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
     console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value);
     console.log("Movie Produced in: " + JSON.parse(body).Country)
-    console.log("Language: " + JSON.parse(body).Lauguage)
+    console.log("Language: " + JSON.parse(body).Language)
     console.log("Plot: " + JSON.parse(body).Plot)
     console.log("Actors: " + JSON.parse(body).Actors)
     }
   });
 }
+ 
 
-// function getRandom(){
+function getRandom(){
 
-// var fs = require("fs");
+	var getrandom = "";
+	var fs = require("fs");
 
-// fs.readFile("random.txt", "utf8", function(error, data) {
+	fs.readFile("random.txt", "utf8", function(error, data) {
+ 
+  	if (error) {
+    return console.log(error);
+  	}
+  	var commands = data.split(",")
+  	console.log(commands[0] +" "+commands[1])
+  	
 
-//   if (error) {
-//     return console.log(error);
-//   }
-// var txt = data.split(',');
+  })
 
-//  var txt = data.toString().split(',');
+}
 
-//       [txt[0].trim()](txt[1].trim());
-//     });
-//   };
-
+  getRandom()
 
