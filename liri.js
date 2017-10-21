@@ -3,28 +3,35 @@ var action = process.argv[2];
 var search = process.argv[3];
 
 var keys = require("./keys.js");
+var fs = require("fs");
+var Twitter = require('twitter');
+var Spotify = require('node-spotify-api');
+var request = require("request");
 
-
+var pick = function(action, search){
 switch (action) {
   case "my-tweets":
     getMyTweets();
     break;
+  
   case "movie-this":
     getMovieInfo();
     break;
+  
   case "spotify-this-song":
     getSongInfo();
     break;
+  
   case "do-what-it-says":
     getRandom();
     break;
   }
-
+}
 
 
 function getMyTweets(){
 
-  var Twitter = require('twitter')
+
   var client = new Twitter({
           consumer_key: keys.twitterKeys.consumer_key,
           consumer_secret:keys.twitterKeys.consumer_secret,
@@ -32,7 +39,6 @@ function getMyTweets(){
           access_token_secret:keys.twitterKeys.access_token_secret 
       })
   var params = {BWCollins82: 'nodejs'};
-  	//console.log(client);
 
   	client.get('statuses/user_timeline', params, function(error, myTweets, response){
   	  		if (!error) {
@@ -40,12 +46,11 @@ function getMyTweets(){
   		  		console.log(myTweets[i].text)
   		  		console.log(myTweets[i].created_at)
      		}			
-  	  }
+  	  	}
   	})
  }
 
 function getSongInfo(){
-	var Spotify = require('node-spotify-api');
  	var spotify = new Spotify({
 		id: keys.spotifyKeys.id,
 		secret: keys.spotifyKeys.secret		
@@ -54,7 +59,7 @@ function getSongInfo(){
   spotify
       .search({ type: 'track', query: search })
       .then(function(response){
-        console.log(typeof response)
+       // console.log(typeof response)
       for(var i in response.tracks.items) {  
         console.log("Artist: " + response.tracks.items[i].artists[0].name)
         console.log("Song Title: " + response.tracks.items[i].name)
@@ -66,8 +71,10 @@ function getSongInfo(){
 
 
 function getMovieInfo(){
-var request = require("request");
-request("http://www.omdbapi.com/?t="+ search +"&y=&plot=short&apikey=40e9cece", function(error, response, body) {
+  if (search === undefined) {
+    search = "Mr. Nobody";
+  }
+request("http://www.omdbapi.com/?t="+ search +"&y=&plot=short&apikey=40e9cece", function(error, response, body) {  
   if (!error && response.statusCode === 200) {
     console.log("Title: " + JSON.parse(body).Title);
     console.log("Year Released: " + JSON.parse(body).Year);
@@ -84,21 +91,31 @@ request("http://www.omdbapi.com/?t="+ search +"&y=&plot=short&apikey=40e9cece", 
 
 function getRandom(){
 
-	var getrandom = "";
-	var fs = require("fs");
-
 	fs.readFile("random.txt", "utf8", function(error, data) {
- 
-  	if (error) {
-    return console.log(error);
-  	}
-  	var commands = data.split(",")
-  	console.log(commands[0] +" "+commands[1])
-  	
+ 		
+   	var commands = data.split(",");
+   	console.log(data)
+	if (commands.length === 2) {
+      pick(commands[0], commands[1]);
+    }
+    else if (commands.length === 1) {
+      pick(commands[0]);
+    	}
+    })
+  }
 
-  })
 
-}
 
-  getRandom()
+
+
+
+
+
+
+
+
+
+
+
+
 
