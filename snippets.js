@@ -85,5 +85,55 @@
 // });
 
 // }
+// function getRandom(){
+
+// 	fs.readFile("random.txt", "utf8", function(error, data) {
+ 		
+//    	var commands = data.split(",");
+//    	console.log(data)
+// 	if (commands.length === 2) {
+//       pick(commands[0], commands[1]);
+//     }
+//     else if (commands.length === 1) {
+//       pick(commands[0]);
+//     	}
+//     })
+//   }
+
+
+//var pick = function(action, search){
+
+
+
+	// if (search === undefined) {
+ //    search = "Mr Nobody";
+ //  }
+
+
+
+// function getRandom(){
+
+// 	fs.readFile("random.txt", "utf8", function(error, data) {
+ 		
+//    	var commands = data.split(",");
+//    	console.log(data)
+// 	if (commands.length === 2) {
+//       pick(commands[0], commands[1]);
+//     }
+//     else if (commands.length === 1) {
+//       pick(commands[0]);
+//     	}
+
+	// 	getMyTweets()
+	// }
+	// if (action == "spotify-this-song")
+	// 	getSongInfo(search)
+		
+	// })
+
+ //  	if (action === "movie-this"){
+ //  		getMovieInfo(search)
+ //  		}
+	// }
 
 //getRandom()
